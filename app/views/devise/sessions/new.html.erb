@@ -34,7 +34,6 @@
                                                     <h2 style="text-align: center;" >Sign in</h2>
                                                     <span class="underline center"></span>
                                                 </div>
-                                                <form class="login" method="post">
                                                     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                                                         <div class="form-inputs">
                                                           <%= f.error_notification %>
@@ -51,7 +50,6 @@
                                                           <%= f.button :submit, "Log in", data: {disable_with: "Signing in..."} %>
                                                         </div>
                                                     <% end %>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>

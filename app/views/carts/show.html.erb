@@ -17,7 +17,7 @@
       </table>
   </div>
     <div style="float:right; margin-right: 19%">
-      <%= link_to "Borrow", confirm_cart_path(@cart.id), id: "borrow"%>
+      <%= link_to "Borrow", confirm_cart_path(@cart.id), id: "borrow", class: "btn btn-borrow"%>
     </div>
 <% else %>
   <h1 style="text-align: center; margin-top: 100px;">
@@ -26,6 +26,17 @@
 <% end %>
 
 
+<style type="text/css">
+    .btn-borrow{
+      background-color: #ff7236;
+      color: white;
+     
+    }
+    .btn-borrow:hover{
+      background-color: #ff4e03;
+      color: #white;
+    }
+</style>
 
 <script type="text/javascript">
  

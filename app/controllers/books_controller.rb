@@ -30,7 +30,6 @@ class BooksController < ApplicationController
   		@search = @q.result(distinct: true)
 		@categories = Category.all
 		@authors = Author.all
-
 		respond_to do |format|
 	      format.html
 	      format.js 
@@ -38,28 +37,27 @@ class BooksController < ApplicationController
     	end
 	end
 
-	def edit; end
+	def edit
+	end
 
 	def update
+		# byebug
 		if @book.update(book_params)
-			flash[:success] = "Updating success"
 			redirect_to book_path
 		else
-			flash[:danger] = "Updated failed"
 			render 'edit'
 		end
 	end
 	
 	def new
 		@book= Book.new
-		@book.bookcategories.build
+		# @book.bookcategories.new
 	end
 
 	def create
-		# byebug
 		@book= Book.new(book_params)
+		Bookcategory.create(book_id: @book.id, category_id: params[:book][:category_ids])
 		if @book.save
-			flash[:success] = "Creating book success"
 			redirect_to @book
 		else
 			flash[:danger] = "Creating book failed"
@@ -75,13 +73,13 @@ class BooksController < ApplicationController
 	end
 
 	def sort
-			if params[:books]
-				@books_request = convert params[:books].values
-				respond_to do |format|
-					format.html
-					format.js
-				end
+		if params[:books]
+			@books_request = convert params[:books].values
+			respond_to do |format|
+				format.html
+				format.js
 			end
+		end
 	end
 
 	def convert arr
@@ -110,9 +108,9 @@ class BooksController < ApplicationController
 	private
 
 	def book_params
-		params.require(:book).permit(:name, :quantity, :publisher, 
-			:page, :author_id, :book_img,  
-			bookcategories_attributes: [:book_id,:category_id,:_destroy])	
+		params.require(:book).permit(:name, :quantity, :publisher, :content,
+			:page, :author_id, :book_img, :category_ids,	
+			bookcategories_attributes: [:book_id,:category_id])	
 	end
 
 	def find_book

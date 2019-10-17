@@ -1,7 +1,9 @@
  <li class="clearfix">
     <div id="cart-item-delete">
         <% book = Book.find(r.book_id)%>
-        <%= link_to (image_tag ("books/"+book.book_img_file_name), style:"height: 70px; width: 45px; margin-top: 30px"),book,method: :get%>
+        <a href="books/<%= book.id%>">
+            <img src="<%= book.book_img %>", style="height: 70px; width: 45px">
+        </a>        
         <div class="item-info">
             <div class="name">
                 <%= link_to book.name, book %>

@@ -69,7 +69,7 @@ class CartsController < ApplicationController
 		dateto = params["dateto"] # get dateto tu tren view ve 
 		number = params["number"] # get number tu tren view ve
 		update_request_params dateto, number
-		@user.carts.create if @cart.verify != 0 
+		@user.carts.create if @cart.verify == 0 
 		respond_to do |f|
 			f.js 
 		end

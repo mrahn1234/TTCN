@@ -19,7 +19,7 @@ class Book < ApplicationRecord
 	#Validate
 	validates :name, presence: true, length: { maximum: 50 }
 	validates :quantity, presence: true, length: { maximum: 1000 }
-
+	validates :author_id, presence: true
 	has_attached_file :book_img, styles: { book_index: "250x350>", book_show: "325x475>" }, default_url: "/images/:style/missing.png"
   	validates_attachment_content_type :book_img, content_type: /\Aimage\/.*\z/
 
