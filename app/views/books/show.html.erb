@@ -1,22 +1,22 @@
 <%= render "banner" %>
-<div id="content" class="site-content">
+    <div id="content" class="site-content">
         <div id="primary" class="content-area">
             <main id="main" class="site-main">
                 <div class="books-media-list">
                     <div class="container">
                         <div class="row">
-                             <%= render "search" %>
+                            <%= render "search" %>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </main>
             <div class="row">
                 <div class="col-md-9 col-md-push-3">
                     <div class="booksmedia-detail-box">
-                        <div class="single-book-box">                                                
+                        <div class="single-book-box">
                             <div class="post-thumbnail">
                                 <div class="book-list-icon yellow-icon"></div>
-                                <img src="<%= @book.book_img %>", style="height: 450px; width: 320px">
+                                <img src="<%= @book.book_img %>" , style="height: 450px; width: 320px">
                             </div>
                             <div class="post-detail" style="margin-right: 70px;">
                                 <div class="books-social-sharing">
@@ -57,13 +57,21 @@
                                     </ul>
                                 </div>
                                 <header class="entry-header">
-                                    <h2 class="entry-title"><%= @book.name %></h2>
+                                    <h2 class="entry-title">
+                                        <%= @book.name %>
+                                    </h2>
                                     <ul>
-                                        <li><strong>Author:</strong> <%= link_to @book.author.name, @book.author,method: :get, class: "book-author"%></li>
+                                        <li><strong>Author:</strong>
+                                            <%= link_to @book.author.name, @book.author,method: :get, class: "book-author"%>
+                                        </li>
                                         <li><strong>ISBN:</strong> 9781581573268</li>
                                         <li><strong>Edition:</strong> First edition</li>
-                                        <li><strong>Publisher:</strong> <%= @book.publisher%></li>
-                                        <li><strong>Quantity:</strong> <%= get_quantity(@book.id)%></li>
+                                        <li><strong>Publisher:</strong>
+                                            <%= @book.publisher%>
+                                        </li>
+                                        <li><strong>Quantity:</strong>
+                                            <%= get_quantity(@book.id)%>
+                                        </li>
                                     </ul>
                                 </header>
                                 <div class="entry-content post-buttons">
@@ -74,25 +82,26 @@
                                         remote: true
                                     } do%>
                                         <i class="fas fa-shopping-cart"></i> Add to Cart
-                                    <% end %>
-                                    <% if current_user.role == 1 %>
-                                        <%= link_to edit_book_path,
+                                        <% end %>
+                                                <%= link_to edit_book_path,
                                         {
                                             class: " btn btn-edit",
                                         } do %>
-                                            <i class="far fa-edit"></i> Edit
-                                        <% end %>
-                                    <% end %>
+                                                    <i class="far fa-edit"></i> Edit
+                                                    <% end %>
                                 </div>
                             </div>
                         </div>
-                        <p style="margin-right: 50px;"><strong>Summary:</strong> <%=@book.content%></p>
+                        <p style="margin-right: 50px;"><strong>Summary:</strong>
+                            <%=@book.content%>
+                        </p>
                         <ul class="detail-page-listing">
-                            <li><strong>Length:</strong> <%= @book.page%> Pages</li>
+                            <li><strong>Length:</strong>
+                                <%= @book.page%> Pages</li>
                             <li><strong>Format:</strong> DVD</li>
                             <li><strong>Language Note:</strong> Icelandic dialogue; English subtitles.</li>
                             <li><strong>Genre :</strong> Feature films, Fiction films, Drama</li>
-                             <li><strong>Topics:</strong> Friendship, Bullies, Pranks, School</li>
+                            <li><strong>Topics:</strong> Friendship, Bullies, Pranks, School</li>
                         </ul>
                     </div>
                 </div>
@@ -106,8 +115,11 @@
                                     <div class="widget_categories" data-content="" style="max-height: 0px; overflow: hidden; transition: max-height 300ms ease 0s;">
                                         <ul>
                                             <% @categories.each do |c| %>
-                                                <li><a href="#"><%= c.name %><span>(<%=c.books.count%>)</span></a></li>
-                                            <% end %>
+                                                <li>
+                                                    <a href="#">
+                                                        <%= c.name %><span>(<%=c.books.count%>)</span></a>
+                                                </li>
+                                                <% end %>
                                         </ul>
                                     </div>
                                 </div>
@@ -117,10 +129,10 @@
                                         <ul>
                                             <% 5.times do |i|%>
                                                 <% a = @authors[i] %>
-                                                <li>
-                                                    <%= link_to a.name+" ("+a.books.count.to_s+")", a, method: :get %>
-                                                </li>
-                                            <% end %>
+                                                    <li>
+                                                        <%= link_to a.name+" ("+a.books.count.to_s+")", a, method: :get %>
+                                                    </li>
+                                                    <% end %>
                                         </ul>
                                     </div>
                                     <div class="clearfix"></div>
@@ -133,76 +145,64 @@
                 </div>
             </div>
         </div>
-</div>
-<style type="text/css">
-    a.book-author{
-       color: #ff7236;     
-    }
-    a.book-author:hover
-       {
-        color: gray;
-    }
-</style>
-<script type="text/javascript">
-    var check = 0
-$('.add-to-cart').click(function(){
-    var user = "<%= current_user.nil?%>"
-    if (user == "true")
-    {
-         alertify
-         .alert("Please login!").setHeader('<em>Thong bao</em>');
-    }
-    else
-    {   
-        var check_quantity ="<%= get_quantity(@book.id) %>"
-        var check_dup_book = "<%= check_item_cart(@book.id) %>"
-        if (check_quantity == "0")
-        {
-            alertify
-            .alert("Out of stock").setHeader('<em>Thong bao</em>');
+    </div>
+    <style type="text/css">
+        a.book-author {
+            color: #ff7236;
         }
-        else
-        {   
-            if (check_dup_book == "true" || check == 1)
-            {
-                alertify
-                .alert("Duplicate item in cart!").setHeader('<em>Thong bao</em>');
-            }
-            else
-            {   
-                //ajax {
-                    //type:GET
-                // }
-                alertify
-                .alert("Added to cart").setHeader('<em>Thong bao</em>');
-                if($('.carts-append li').text() == "Emptying")
-                {    
-                    $('.carts-append').html("<%= j render partial: "requests/item", object: @book, as: :book %>")
-                    $('.carts-append').append("<%= j render partial: "layouts/view_cart_btn" %>")
-                }
-                else
-                {   
-                    $('.carts-append').prepend("<%= j render partial: "requests/item", object: @book, as: :book %>")
-                }
-                check = 1
-            }
-            
+        
+        a.book-author:hover {
+            color: gray;
         }
-    }
-    
-   
-  
-})
-  
-</script>
+    </style>
+    <script type="text/javascript">
+        var check = 0
+        $('.add-to-cart').click(function() {
+            var user = "<%= current_user.nil?%>"
+            if (user == "true") {
+                alertify
+                    .alert("Please login!").setHeader('<em>Thong bao</em>');
+            } else {
+                var check_quantity = "<%= get_quantity(@book.id) %>"
+                var check_dup_book = "<%= check_item_cart(@book.id) %>"
+                if (check_quantity == "0") {
+                    alertify
+                        .alert("Out of stock").setHeader('<em>Thong bao</em>');
+                } else {
+                    if (check_dup_book == "true" || check == 1) {
+                        alertify
+                            .alert("Duplicate item in cart!").setHeader('<em>Thong bao</em>');
+                    } else {
+                        //ajax {
+                        //type:GET
+                        // }
+                        alertify
+                            .alert("Added to cart").setHeader('<em>Thong bao</em>');
+                        if ($('.carts-append li').text() == "Emptying") {
+                            $('.carts-append').html("<%= j render partial: 'requests/item', object: @book, as: :book %>")
+                            $('.carts-append').append("<%= j render partial: 'layouts/view_cart_btn' %>")
+                        } else {
+                            $('.carts-append').prepend("<%= j render partial:'requests/item', object: @book, as: :book %>")
+                        }
+                        check = 1
+                    }
+
+                }
+            }
 
 
-<style type="text/css">
-    .btn-edit{
-        background-color: #138496;
-        border-color: #117a8b;
-    }
-    .btn-edit:hover{
-        background-color: orange;   
-    }
-</style>
+
+        })
+    </script>
+
+
+    <style type="text/css">
+        .btn-edit {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+        
+        .btn-edit:hover {
+            background-color: orange;
+        }
+    </style>
