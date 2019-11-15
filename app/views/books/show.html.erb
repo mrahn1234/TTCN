@@ -75,7 +75,7 @@
                                     } do%>
                                         <i class="fas fa-shopping-cart"></i> Add to Cart
                                     <% end %>
-                                    <% if current_user.role == 1 %>
+                                    <% if current_user&.role == 1 %>
                                         <%= link_to edit_book_path,
                                         {
                                             class: " btn btn-edit",
@@ -106,7 +106,7 @@
                                     <div class="widget_categories" data-content="" style="max-height: 0px; overflow: hidden; transition: max-height 300ms ease 0s;">
                                         <ul>
                                             <% @categories.each do |c| %>
-                                                <li><a href="#"><%= c.name %><span>(<%=c.books.count%>)</span></a></li>
+                                                <li><a href="/categories/<%= c.id %>"><%= c.name %><span>(<%=c.books.count%>)</span></a></li>
                                             <% end %>
                                         </ul>
                                     </div>
