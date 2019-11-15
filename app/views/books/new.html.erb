@@ -1,7 +1,7 @@
 <%= render "banner" %>
 
 <!-- Material form login -->
-
+<% if current_user && current_user.role == 1 %>
 <div id="content" class="site-content">
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
@@ -45,7 +45,7 @@
         </main>
     </div>
 </div>
-
+<% end %>
 <style type="text/css">
 	.select-styled{
 		color: #707070;

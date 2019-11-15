@@ -74,22 +74,24 @@
                                         </li>
                                     </ul>
                                 </header>
-                                <div class="entry-content post-buttons">
-                                    <%= link_to requests_path(book_id: @book.id),
-                                    {
-                                        class: "add-to-cart btn btn-dark-gray",
-                                        method: :post, 
-                                        remote: true
-                                    } do%>
-                                        <i class="fas fa-shopping-cart"></i> Add to Cart
-                                        <% end %>
-                                                <%= link_to edit_book_path,
+                                <% if current_user && current_user.role == 1 %>
+                                    <div class="entry-content post-buttons">
+                                        <%= link_to requests_path(book_id: @book.id),
                                         {
-                                            class: " btn btn-edit",
-                                        } do %>
-                                                    <i class="far fa-edit"></i> Edit
-                                                    <% end %>
-                                </div>
+                                            class: "add-to-cart btn btn-dark-gray",
+                                            method: :post, 
+                                            remote: true
+                                        } do%>
+                                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                                            <% end %>
+                                                    <%= link_to edit_book_path,
+                                            {
+                                                class: " btn btn-edit",
+                                            } do %>
+                                                        <i class="far fa-edit"></i> Edit
+                                                        <% end %>
+                                    </div>
+                                <% end %>
                             </div>
                         </div>
                         <p style="margin-right: 50px;"><strong>Summary:</strong>

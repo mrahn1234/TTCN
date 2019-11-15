@@ -1,9 +1,30 @@
-<% provide :title, @category.name %>
-<h1><%= @category.name+"(#{@category.books.count})" %></h1>
+<%= render "banner" %>
+<h1 style="text-align: center; color: #e7770a;margin-top: 20px;"><%= @category.name+"(#{@category.books.count})" %></h1>
 
 <div>
-  <ul class="row">
-       <%= render @books %>     
-  </ul> 
-</div>
+  <div class="row">
+    <div>
+      <div class="pagination" style="margin-left: 155px;"><%== pagy_bootstrap_nav(@pagy)%></div>
+      <div style="float: right; margin-right: 150px;">
+        <% if current_user %>
+           <a href="/books/new"><i class="fas fa-plus fa-4x " style="color: orange;" ></i></a>
+        <% end %>
+      </div>
+    </div>
+      
+      <div class="booksmedia-fullwidth">
+          <div class="row">
+              <div class="col-md-10 col-md-push-1">  
+                  <ul id="book-index">              
+                      <% @books.each do |book| %>
+       									<%= render partial: "categories/book", object: book, as: :book %>     
+  										<% end %>
+                  </ul>
+              </div>
+          </div>
 
+      </div>
+      <div class="pagination"  style="margin-left: 155px; margin-bottom: 40px;"><%==pagy_bootstrap_nav(@pagy)%></div>
+  </div>
+                        
+</div>

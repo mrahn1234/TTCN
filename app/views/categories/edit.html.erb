@@ -1,12 +1,16 @@
-<h1>Update category</h1>
+<%= render "banner" %>
+<% if current_user && current_user.role == 1 %>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@category) do |f| %>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@category) do |f| %>
-
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
-    <% end %>
+        <%= f.label :Category %>
+        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.submit "Save changes", class: "btn btn-primary" %>
+        <%= f.button "Cancel", class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div> 	
   </div>
-</div> 
+<% end %>
