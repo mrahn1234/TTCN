@@ -77,7 +77,9 @@
                                                 <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Manage</a>
                                                 <ul class="dropdown-menu">
                                                      <li><%= link_to "Manage of cart", carts_path, method: :get %></li>
-                                                     <li><%= link_to "Manage of user"%></li>
+                                                     <li><%= link_to "Manage of user" %></li>
+                                                     <li><%= link_to "Manage of category", categories_path,method: :get %></li>
+
                                                 </ul>
                                             </li> 
                                         <% end %>

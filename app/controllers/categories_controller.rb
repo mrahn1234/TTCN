@@ -15,6 +15,7 @@ class CategoriesController < ApplicationController
 
   def show
       @books = @category.books
+      @pagy, @books = pagy_countless(@books.order("created_at DESC"), items: 9)
   end
 
   def new
@@ -36,7 +37,7 @@ class CategoriesController < ApplicationController
   def update
     if @category.update_attributes(category_params)
       flash[:success] = "Category updated"
-      redirect_to @category
+      redirect_to action: "index"
     else
       render 'edit'
     end
@@ -47,8 +48,6 @@ class CategoriesController < ApplicationController
     respond_to do |format|
         format.js
     end
-    # flash[:success] = "Category deleted"
-    # redirect_to categories_url
   end
 
   private 

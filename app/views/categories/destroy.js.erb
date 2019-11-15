@@ -1,3 +1,5 @@
+
 $('.delete_categories').bind('ajax:success', function() {
       $(this).closest('li').fadeOut();
+      $(window.location.replace("/categories"));
 });
