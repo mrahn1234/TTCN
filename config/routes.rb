@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 	root 'static_pages#index'
 	devise_for :users
 	resources :books
@@ -19,5 +20,6 @@ Rails.application.routes.draw do
 		end
 	end
 	resources :requests 
+	get '/crud_book', to: "books#crud_book"
 
 end

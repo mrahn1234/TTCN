@@ -75,7 +75,7 @@
                                     } do%>
                                         <i class="fas fa-shopping-cart"></i> Add to Cart
                                     <% end %>
-                                    <% if current_user.role == 1 %>
+                                    <% if current_user && current_user.role == 1  %>
                                         <%= link_to edit_book_path,
                                         {
                                             class: " btn btn-edit",

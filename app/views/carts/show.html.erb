@@ -51,15 +51,21 @@
 
   var dateto = Array.from(document.querySelectorAll("#request_dateto"));
   var quantity = Array.from(document.querySelectorAll("#request_number"))
+  var checkQuantity = Array.from(document.querySelectorAll("#storeQuanity"))
   var arr1 = dateto.map(d=>d.value)
   var  arr2 = quantity.map(d=>d.value)
-  console.log(quantity)
+  var arrQuantity = checkQuantity.map(d=>d.innerText);
+  console.log(arrQuantity)
+ 
   $(document).on('click keyup','#request_number, #request_dateto', function(){
     quantity = Array.from(document.querySelectorAll("#request_number"))
     dateto = Array.from(document.querySelectorAll("#request_dateto"))
+    checkQuantity = Array.from(document.querySelectorAll("#storeQuanity"))
     arr2 = quantity.map(d=>d.value)
     arr1 = dateto.map(d=>d.value)
-    // console.log(arr1)
+     arrQuantity = checkQuantity.map(d=>d.innerText);
+    // console.log(arrQuantity)
+    
   })
   // $(document).on('click','#request_dateto', function(){
   //   var d = Array.from(document.querySelectorAll("#request_dateto"))
@@ -71,11 +77,21 @@
  // var quantity = Array.from(document.querySelectorAll("#request_quantity_get"));
 
    // console.log(arr2)
+
    $('#borrow').click(function(e){
-      // console.log(arr2)
+      var check = true
       e.preventDefault();
-       var i = 0;
-       $.ajax({
+      arr2.forEach(function(e,index){
+        if(parseInt(e) > parseInt(arrQuantity[index]))
+        {
+          alertify
+          .alert("Vua qua so luong").setHeader('<em>Thong bao</em>');
+          check = false;
+          return;
+        }
+      })
+      if(check === true){
+        $.ajax({
           method: "POST",
           url: "/carts/"+"<%=@cart.id%>"+"/confirm",
           data: {"dateto": arr1, "number": arr2},
@@ -91,7 +107,9 @@
           {
             console.log(err)
           }
-        })    
+        })   
+      }
+      else return;
    })
     
  //  update_params() 

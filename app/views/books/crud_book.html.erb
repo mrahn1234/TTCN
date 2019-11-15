@@ -1,0 +1,31 @@
+<%= render partial: "banner" %>
+<div class="table-users" style="margin-top: 70px;">
+	   <div class="header">Management of Book</div>
+	   
+	   <table cellspacing="0">
+	      <tr>
+	         <th>Name</th>
+             <th>Picture</th>
+	         <th>Quantity</th>
+	         <th>Publisher</th>
+	         <th>Page</th>
+	         <th>Content</th>
+	      </tr>
+          
+            <% @books.each do |b| %>
+            <tr>
+                <td><%= b.name %></td>
+                <td>
+			    <a href="/books/<%= b.id%>">
+				<img src="<%= b.book_img %>", style="height: 120px; width: 70px">
+			</a>
+		</td>
+                <td><%= b.quantity %></td>
+                <td><%= b.publisher %></td>
+                <td><%= b.page %></td>
+                <td><%= b.content %></td>                
+             </tr>    
+	        <% end %>
+         
+	   </table>
+	</div>

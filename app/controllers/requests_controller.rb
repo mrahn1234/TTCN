@@ -1,4 +1,4 @@
-class RequestsController < ApplicationController
+	class RequestsController < ApplicationController
 
 	# before_action :find_book, only: [:new, :create]
 	before_action :find_user, only: [:new, :create, :destroy]

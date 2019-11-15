@@ -24,7 +24,15 @@ class BooksController < ApplicationController
     	# byebug
 	end
 
-	
+	def crud_book
+		@categories = Category.all
+		@authors = Author.all
+		@q = Book.search(params[:q])
+		@search = @q.result(distinct: true)
+		@pagy, @books = pagy_countless(@search.order("created_at DESC"), items: 9)
+		# render html: @books
+	end
+
 	def show
 		@q = Book.search(params[:q])
   		@search = @q.result(distinct: true)

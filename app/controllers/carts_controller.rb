@@ -40,11 +40,12 @@ class CartsController < ApplicationController
 		session[:dateto] = dateto
 		session[:number] = number
 		book_arr = []
+		# session[:number] la mang so luong sach 
 		check = 0
 		@list_requests.each_with_index do |r,dem|
 			if dateto  && number
 				book_arr[dem] = Book.find(r.book_id)
-				if book_arr[dem].quantity >= session[:number][dem].to_i && session[:dateto][dem].to_date > Time.zone.now.to_date
+				if book_arr[dem].quantity >= session[:number][dem].to_i && session[:dateto][dem].to_date > Time.zone.now.to_date #time zone la ngay hien tai
 					r.update_attributes(number: session[:number][dem].to_i,datefrom: Time.zone.now.to_date, dateto: session[:dateto][dem].to_date)
 					book_arr[dem].quantity = book_arr[dem].quantity - r.number
 				else
@@ -65,13 +66,13 @@ class CartsController < ApplicationController
 		end
 	end
 
-	def confirm
+	def confirm #check out
 		dateto = params["dateto"] # get dateto tu tren view ve 
 		number = params["number"] # get number tu tren view ve
 		update_request_params dateto, number
 		@user.carts.create if @cart.verify == 0 
 		respond_to do |f|
-			f.js 
+			f.js  
 		end
 	end
 
@@ -133,7 +134,7 @@ class CartsController < ApplicationController
 
 		def cart_and_request
 			@cart = Cart.find(params["id"])
-			@list_requests = Request.where("cart_id = "+@cart.id.to_s)
+			@list_requests = Request.where("cart_id = "+@cart.id.to_s) # lay item tu gio hang co id la ...
 		end
 
 		def request_params
