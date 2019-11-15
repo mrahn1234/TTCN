@@ -1,3 +1,4 @@
+<% if !user_signed_in? || (current_user && current_user.role != 1)  %>
 <li>
     <div class="book-list-icon red-icon"></div>
     <figure>
@@ -31,3 +32,106 @@
         </figcaption>
     </figure>                                                
 </li>
+<%end%>
+
+<% if user_signed_in? && current_user.role == 1  %>
+<li>
+   <div class="card">
+      <div class="book-list-icon red-icon"></div>
+    <figure>
+        <a>
+            <%= link_to (image_tag author.author_img.url(:author_index), class: "author_index",style:"height: 450px; width: 355px"),author,method: :get%>
+        </a>
+        <figcaption>
+            <header>
+                <h4><%= link_to author.name, author,method: :get%></h4>
+            </header>
+            <p><%= author.info%></p>
+            <div class="actions">
+                <ul>
+                    <li>
+                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Like">
+                            <i class="fa fa-heart"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Print">
+                            <i class="fa fa-print"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Share">
+                            <i class="fa fa-share-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </figcaption>
+    </figure>
+    <div class="buttons">
+           <%= button_to "Details",author,class:"btnDetails",method: :get%>
+           <%= button_to "Edit",edit_author_path(:id=>author),class:"btnEdit",data:{confirm: 'Are you sure?'},method: :get%>
+           <%= button_to "Delete",author,class:"btnDel", data: { confirm: 'Are you sure?'},method: :delete%>
+    </div>
+   </div>
+   </li>
+
+   <style type="text/css">
+   .buttons{
+       margin-top: 2em !important;
+       font-weight: bold !important;
+   }
+   .btnDetails, .btnEdit{
+      float: left !important;
+   }
+   .btnEdit, .btnDel, .btnDetails{
+       color: #fff !important;
+       transition: 0.8s !important;
+       background: #f56363 !important;
+       border: 0.3rem solid #f56363 !important;
+       font: inherit !important;
+       line-height: 1 !important;
+       margin: 0.15em !important;
+       padding: 0.5em 1em !important;
+       border-radius: 0.2rem !important;
+       font-size: 1.7rem !important;
+   }
+
+   .btnEdit:hover,
+   .btnEdit:focus,
+   .btnDel:hover,
+   .btnDel:focus,
+   .btnDetails:hover,
+   .btnDetails:focus {
+    box-shadow: inset 0 0 0 2em #fff !important; 
+    border-color: ##f56363 !important;
+    color: #f56363 !important;
+    animation: rotate 0.7s ease-in-out both;
+    animation: storm 0.7s ease-in-out both;
+    animation-delay: 0.06s;
+}
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg) translate3d(0, 0, 0)}
+    25%{
+        transform: rotate(3deg) translate3d(0, 0, 0)}
+    50%{
+        transform: rotate(-3deg) translate3d(0, 0, 0)}
+    75%{
+        transform: rotate(1deg) translate3d(0, 0, 0)}
+    100%{
+        transform: rotate(0deg) translate3d(0, 0, 0)}
+}
+@keyframes storm {
+    0%{
+        transform: translate3d( 0, 0, 0) translateZ(0)}
+    25%{
+        transform: translate3d( 4px, 0, 0) translateZ(0)}
+    50%{
+        transform: translate3d( -3px, 0, 0) translateZ(0)}
+    75%{
+        transform: translate3d( 2px, 0, 0) translateZ(0)}
+    100%{
+        transform: translate3d( 0, 0, 0) translateZ(0)}}
+</style>
+<%end%>

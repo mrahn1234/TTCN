@@ -1,3 +1,62 @@
-<h1>Edit</h1>
+<%= render "banner" %>
 
-<%= render 'form' %>
+    <!-- Material form login -->
+
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <div class="signin-main">
+                    <div class="container">
+                        <div class="woocommerce">
+                            <div class="woocommerce-login">
+                                <div class="company-info signin-register">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="company-detail bg-dark margin-center">
+                                                    <div class="signin-head">
+                                                        <h2 style="text-align: center;">Edit book</h2>
+                                                        <span class="underline center"></span>
+                                                    </div>
+                                                    <%= form_for @author, method: :patch do |f| %>
+                                                        <%= f.text_field :name, class: "form-control", placeholder:'@author.name' %>
+                                                            <!-- <%= image_tag @author.author_img.url(:author_show), class: "author_show",style:"height: 23em; width: 23em; border: 7px solid #D3D3D3;"%> -->
+                                                            <%= f.file_field :author_img, class: "form-control urlImg"%>
+                                                                <%= f.text_field :email,class: "form-control", placeholder: "Email" %>
+                                                                    <%= f.text_area :info, class: "form-control", placeholder: "Decription author..." %>
+                                                                        <div class="form-actions" style="text-align: center; padding-top: 20px;">
+                                                                            <%= f.button "Save" %>
+                                                                        </div>
+                                                                        <% end %>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <style type="text/css">
+        .select-styled {
+            color: #707070;
+            background-color: #202020;
+            border-color: #1e1e1e;
+            margin-top: 10px;
+        }
+        
+        .form-control {
+            margin-top: 10px;
+            color: #707070;
+            background-color: #202020;
+            border: 1px solid #202020
+        }
+    </style>
+
+    <script type="text/javascript">
+    </script>
