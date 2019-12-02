@@ -62,7 +62,7 @@
                                 </ul>
                                 </li>
                                 <li><a href="#">Services</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <%# <li><a href="#">Contact</a></li> %>
                                 <li class="dropdown">
                                     <% if user_signed_in? %>
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">
@@ -104,7 +104,11 @@
                                             <li><%= link_to "Manage of category", categories_path,method: :get %></li>
                                         </ul>
                                     </li>
-                                    <% end %>
+                                <li>
+                                    <a href="/admin">Admin page</a>
+                                </li>
+                                <% end %>
+                                
                             </ul>
                         </div>
                     </div>

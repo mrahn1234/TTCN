@@ -70,7 +70,7 @@
     </figure>
     <div class="buttons">
            <%= button_to "Details",author,class:"btnDetails",method: :get%>
-           <%= button_to "Edit",edit_author_path(:id=>author),class:"btnEdit",data:{confirm: 'Are you sure?'},method: :get%>
+           <%= button_to "Edit",edit_author_path(:id=>author),class:"btnEdit",method: :get%>
            <%= button_to "Delete",author,class:"btnDel", data: { confirm: 'Are you sure?'},method: :delete%>
     </div>
    </div>

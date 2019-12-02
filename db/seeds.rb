@@ -6,7 +6,7 @@ User.create!(name:  "admin",
              password:              "123456",
              password_confirmation: "123456",
              role: 1)
-30.times do |n|
+20.times do |n|
   name  = Faker::Name.name
   email = "user-#{n+1}@gmail.com"
   password = "123456"
@@ -49,7 +49,7 @@ authors.each do |author|
   end	
 end
 
-Category
+#Category
 categories = ["Textbook","Novel", "Manga","History", "Scientist", "Politic", "Cultural", "Computer", "Technical", "Geography"]
 categories.each do |category|
 	Category.create!(name: category)
