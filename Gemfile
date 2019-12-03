@@ -32,6 +32,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jquery-rails', '4.3.1'
 #them gem figaro de gui mail
 gem 'figaro'
+group :production do
+  # gem 'pg', '=1.1.4'
+  gem 'rails_12factor'
+end
+group :development do
+  gem 'mysql2', '>= 0.4.4', '< 0.6.0'
+end
 #them gem
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
