@@ -1,0 +1,41 @@
+<div class="container">
+        <h2 class="text-center" style="color: black">Comment Form</h2>
+         <% if user_signed_in? %>
+            <div class="card" >
+                <div class="card-body">
+                    <div class="row" style="border: 1px solid #eee; border-radius:8px">
+                        <div class="col-md-2" style="width: 10%;margin-top: 10px">
+                            <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                            
+                        </div>
+                       
+                            <div class="col-md-8" style="margin-bottom: 10px; margin-top: 10px">
+                                <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong> <%= link_to current_user.name  %> </strong></a>
+                                <textarea style="width: 100%"> </textarea> 
+                                <div class="float-right"><input  type="Submit" value="Send" class="btn btn-primary but"></input></div>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        
+        <div class="card card-inner">
+            <div class="card-body">
+                <div class="row" style="border: 1px solid #eee; border-radius:8px">
+                    <div class="col-md-2" style="width: 10%;margin-top: 10px">
+                        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" style="width:50%" />
+                        <p class="text-secondary text-center">15 Minutes Ago</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p><a href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>
+                        </strong></a></p>
+                        <p> cmt content</p>
+                        <p>
+                            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                       </p>
+                    </div>
+                </div>
+            </div>
+        </div>           
+</div>

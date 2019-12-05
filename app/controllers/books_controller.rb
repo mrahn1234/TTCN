@@ -35,7 +35,7 @@ class BooksController < ApplicationController
 
 	def show
 		@q = Book.search(params[:q])
-  		@search = @q.result(distinct: true)
+  		# @search = @q.result(distinct: true)
 		@categories = Category.all
 		@authors = Author.all
 		respond_to do |format|

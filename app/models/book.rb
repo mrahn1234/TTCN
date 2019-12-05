@@ -10,17 +10,7 @@ class Book < ApplicationRecord
 			# configuration here
 		end
 	end
-	# 	#ManytoMany Book_Liked_User
-	#   	has_many :likes, dependent: :destroy
-	#   	has_many :liked_users, through: :likes, source: :user
-	# #ManytoMany Book_Reviewed
-	# has_many :reviews, dependent: :destroy
-	# #Many to Many Poly Follow book, author
-	# has_many :follows, as: :target, dependent: :destroy
-	# has_many :followers, through: :follows, source: :user
-	# #ManytoMany _Request details
 	has_many :requests, dependent: :destroy
-	# has_many :users, through: :requests
 	
 	#Validate
 	validates :name, presence: true, length: { maximum: 50 }
